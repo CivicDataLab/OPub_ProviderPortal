@@ -1,0 +1,12 @@
+{
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "filewatcher.commands": [
+    {
+      "match": "styles/themes/blue.ts",
+      "isAsync": true,
+      "cmd": "echo '${file} file content Changed'",
+      "event": "onFileChange"
+    }
+  ]
+}

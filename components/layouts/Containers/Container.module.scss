@@ -1,0 +1,21 @@
+.box {
+  background-color: var(--color-white);
+  border: 1px solid var(--border-default);
+  border-radius: 6px;
+}
+
+.dashboard_header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 24px;
+  > h1,
+  > h2,
+  > h3 {
+    border-bottom: 2px solid var(--border-default);
+    padding-bottom: 8px;
+    flex-grow: 1;
+  }
+}

@@ -1,0 +1,24 @@
+import { SVGProps, forwardRef } from 'react';
+
+interface Props extends SVGProps<SVGSVGElement> {}
+
+const IconScreenReader = (props, ref) => (
+  <svg
+    width={props.width ? props.width : 24}
+    viewBox="0 0 24 24"
+    fill="black"
+    xmlns="http://www.w3.org/2000/svg"
+    ref={ref}
+    {...props}
+  >
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M5.82857 4C4.81868 4 4 4.81868 4 5.82857V15.581C4 16.5908 4.81868 17.4095 5.82857 17.4095L18.1714 17.4095C19.1813 17.4095 20 16.5908 20 15.581V5.82857C20 4.81868 19.1813 4 18.1714 4H5.82857ZM12.8533 8.47192C12.8533 8.39798 12.7982 8.32976 12.7091 8.29332C12.6199 8.25689 12.5105 8.25787 12.4226 8.29589L9.64571 9.49738H8.58667C8.11591 9.49738 7.73334 9.77239 7.73334 10.1129V11.7538C7.73334 12.0943 8.11591 12.3693 8.58667 12.3693H9.64571L12.4226 13.5708C12.5105 13.6088 12.6199 13.6098 12.7091 13.5733C12.7982 13.5369 12.8533 13.4687 12.8533 13.3947V8.47192ZM15.6978 8.67717V13.1927H16.2667V8.67717H15.6978ZM14.56 12.3717V9.49818H15.1289V12.3717H14.56ZM13.4222 10.3192V11.5507H13.9911V10.3192H13.4222ZM16.2667 20H7.73334V18.9333H16.2667V20Z"
+      fillOpacity={0.87}
+    />
+  </svg>
+);
+
+const ForwardRef = forwardRef<SVGSVGElement, Props>(IconScreenReader);
+export { ForwardRef as IconScreenReader };

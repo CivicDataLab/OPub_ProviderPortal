@@ -1,0 +1,1 @@
+export { AccessModelCard } from './AccessModelCard';

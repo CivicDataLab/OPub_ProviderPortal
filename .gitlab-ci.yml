@@ -1,0 +1,43 @@
+variables:
+  DOCKER_HOST: tcp://docker:2375
+  IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+  # Tell 'docker:dind' to enable TLS (recommended)
+  # and generate certificates in the specified directory.
+  DOCKER_TLS_CERTDIR: ""
+#   http_proxy: "http://10.194.150.152:3128"
+#   https_proxy: "http://10.194.150.152:3128"
+  
+# .proxied-job:
+#   variables:
+#     http_proxy: "http://10.194.150.152:3128"
+#     https_proxy: "http://10.194.150.152:3128"
+#     no_proxy: "127.0.0.1,localhost,docker"
+    
+before_script:
+  - docker login -u deepthichand@civicdatalab.in -p Deepthi@123 https://chub.cloud.gov.in
+
+dev:
+  image: docker:20.10.16
+  services:
+    - docker:20.10.16-dind
+  script:
+    - docker build -t chub.cloud.gov.in/mit6c0-ogd/idpfrontend:nic_server --build-arg https_proxy=http://10.194.150.152:3128 --build-arg http_proxy=http://10.194.150.152:3128 .
+    - docker push chub.cloud.gov.in/mit6c0-ogd/idpfrontend:nic_server
+
+prod:
+  image: docker:20.10.16
+  services:
+    - docker:20.10.16-dind
+  script:
+    - docker build -t chub.cloud.gov.in/mit6c0-ogd/idpfrontend:staging --build-arg https_proxy=http://10.194.150.152:3128 --build-arg http_proxy=http://10.194.150.152:3128 .
+    - docker push chub.cloud.gov.in/mit6c0-ogd/idpfrontend:staging
+  when: manual
+
+staging:
+  image: docker:20.10.16
+  services:
+    - docker:20.10.16-dind
+  script:
+    - docker build -t chub.cloud.gov.in/mit6c0-ogd/idpfrontend:prod --build-arg https_proxy=http://10.194.150.152:3128 --build-arg http_proxy=http://10.194.150.152:3128 .
+    - docker push chub.cloud.gov.in/mit6c0-ogd/idpfrontend:prod
+  when: manual

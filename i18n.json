@@ -1,0 +1,12 @@
+{
+  "locales": ["en", "hi", "te"],
+  "defaultLocale": "en",
+  "pages": {
+    "*": ["common"],
+    "/": ["home", "sectors"],
+    "/sectors": ["sectors"],
+    "/sectors/[sector]": ["sectors"],
+    "/providers": ["providers"],
+    "/datasets/[explorer]": ["dataset-landing"]
+  }
+}
