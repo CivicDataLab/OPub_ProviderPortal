@@ -1,67 +1,30 @@
 version: '3'
 
-volumes:
-  mysql_data:
-      driver: local
 
 services:
-  mysql:
-      image: mysql:latest
-      container_name: db-mysql
-      volumes:
-        - mysql_data:/var/lib/mysql
-      environment:
-        MYSQL_ROOT_PASSWORD: root
-        MYSQL_DATABASE: keycloak
-        MYSQL_USER: keycloak
-        MYSQL_PASSWORD: password
-  
-  keycloak:
-      image: quay.io/keycloak/keycloak:legacy
-      container_name: kc
-      # volumes:
-      # - ./imports:/opt/jboss/keycloak/imports
-      # command: 
-      # - "-b 0.0.0.0 -D keycloak.import=/opt/jboss/keycloak/imports/realm-export.json"
-      environment:
-        DB_VENDOR: MYSQL
-        DB_ADDR: mysql
-        DB_DATABASE: keycloak
-        DB_USER: keycloak
-        DB_PASSWORD: password
-        KEYCLOAK_USER: admin
-        KEYCLOAK_PASSWORD: Pa55w0rd
-        # Uncomment the line below if you want to specify JDBC parameters. The parameter below is just an example, and it shouldn't be used in production without knowledge. It is highly recommended that you read the MySQL JDBC driver documentation in order to use it.
-        #JDBC_PARAMS: "connectTimeout=30000"
-      ports:
-        - 8080:8080
-      depends_on:
-        - mysql
-  
-  # strapi:
-  #   container_name: strapi
-  #   image: strapi/strapi
-  #   # environment:
-  #   #   - NODE_ENV=production
-  #   #   - DATABASE_CLIENT=mysql
-  #   #   - DATABASE_HOST=mysql
-  #   #   # - DATABASE_PORT=3306
-  #   #   - DATABASE_NAME=strapi
-  #   #   - DATABASE_USERNAME=keycloak
-  #   #   - DATABASE_PASSWORD=password
-  #   ports:
-  #     - 1337:1337
-  #   volumes:
-  #     - ./app:/srv/app
-  #   depends_on:
-  #     - mysql
-  #   command: 'strapi start'
 
-  next_app:
+  web:
       build:
         context: .
         dockerfile: Dockerfile
-      container_name: next-js-app
+      container_name: opub-dataportal
+      environment:
+        - KEYCLOAK_URL='http://localhost:8080'
+        - STRAPI_URL='https://strapi.ndp.civicdatalab.in'
+        - DATAPIPELINE_URL='http://13.232.239.70/'
+        - CKAN_BASE_URL='https://ndp.ckan.civicdatalab.in'
+        - NEXT_PUBLIC_STRAPI_URL='https://strapi.ndp.civicdatalab.in'
+        - NEXT_PUBLIC_BACKEND_URL='https://idpbe.civicdatalab.in'
+        - BACKEND_URL='https://idpbe.civicdatalab.in'
+        - NEXT_PUBLIC_AUTH_URL='https://auth.idp.civicdatalab.in'
+        - KEYCLOAK_BASE_URL='https://kc.ndp.civicdatalab.in'
+        - KEYCLOAK_REALM='external'
+        - KEYCLOAK_CLIENTID='opub-idp'
+        - KEYCLOAK_SECRET='YCsLCvO3kNIMcx6tz24jEzAmiHKxpErs'
+        - NEXTAUTH_URL='http://localhost:3000'
+        - PIPELINE_URL='https://pipeline.ndp.civicdatalab.in'
+       
+      command: bash -c "npm run build && npm start"
       ports:
         - 3000:3000
       # stdin_open: true
