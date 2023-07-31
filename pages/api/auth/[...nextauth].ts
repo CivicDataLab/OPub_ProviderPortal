@@ -50,6 +50,7 @@ export const authOptions = {
       },
     },
   },
+  secret: 'afsafasfsdfsdfsdfsd', //process.env.KEYCLOAK_SECRET,
 };
 
 export default NextAuth(authOptions);

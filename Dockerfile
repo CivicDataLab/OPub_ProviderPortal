@@ -10,23 +10,6 @@ FROM node:alpine
 #RUN mkdir -p /usr/src/app
 
 #Setting the required env variables
-ENV KEYCLOAK_URL='http://localhost:8080'
-ENV STRAPI_URL='https://strapi.ndp.civicdatalab.in'
-ENV DATAPIPELINE_URL='http://13.232.239.70/'
-ENV CKAN_BASE_URL='https://ndp.ckan.civicdatalab.in'
-ENV NEXT_PUBLIC_STRAPI_URL='https://strapi.ndp.civicdatalab.in'
-ENV NEXT_PUBLIC_BACKEND_URL='https://idpbe.civicdatalab.in'
-
-ENV BACKEND_URL='https://idpbe.civicdatalab.in'
-ENV NEXT_PUBLIC_AUTH_URL='https://auth.idp.civicdatalab.in'
-
-ENV KEYCLOAK_BASE_URL='https://kc.ndp.civicdatalab.in'
-ENV KEYCLOAK_REALM='external'
-ENV KEYCLOAK_CLIENTID='opub-idp'
-ENV KEYCLOAK_SECRET='YCsLCvO3kNIMcx6tz24jEzAmiHKxpErs'
- 
-ENV NEXTAUTH_URL='http://localhost:3000'
-ENV PIPELINE_URL='https://pipeline.ndp.civicdatalab.in'
 
 #Sets the working directory for any RUN, CMD, ENTRYPOINT, COPY, and ADD commands
 WORKDIR /code

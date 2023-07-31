@@ -8,22 +8,7 @@ services:
         context: .
         dockerfile: Dockerfile
       container_name: opub-dataportal
-      environment:
-        - KEYCLOAK_URL='http://localhost:8080'
-        - STRAPI_URL='https://strapi.ndp.civicdatalab.in'
-        - DATAPIPELINE_URL='http://13.232.239.70/'
-        - CKAN_BASE_URL='https://ndp.ckan.civicdatalab.in'
-        - NEXT_PUBLIC_STRAPI_URL='https://strapi.ndp.civicdatalab.in'
-        - NEXT_PUBLIC_BACKEND_URL='https://idpbe.civicdatalab.in'
-        - BACKEND_URL='https://idpbe.civicdatalab.in'
-        - NEXT_PUBLIC_AUTH_URL='https://auth.idp.civicdatalab.in'
-        - KEYCLOAK_BASE_URL='https://kc.ndp.civicdatalab.in'
-        - KEYCLOAK_REALM='external'
-        - KEYCLOAK_CLIENTID='opub-idp'
-        - KEYCLOAK_SECRET='YCsLCvO3kNIMcx6tz24jEzAmiHKxpErs'
-        - NEXTAUTH_URL='http://localhost:3000'
-        - PIPELINE_URL='https://pipeline.ndp.civicdatalab.in'
-       
+      env_file: .env       
       command: sh -c "npm run build && npm start"
       ports:
         - 3000:3000
