@@ -7,7 +7,7 @@ FROM node:alpine
 #     apk add curl git nano wget screen vim
 
 #Creates directories
-RUN mkdir -p /usr/src/app
+#RUN mkdir -p /usr/src/app
 
 #Setting the required env variables
 ENV KEYCLOAK_URL='http://localhost:8080'
@@ -29,10 +29,10 @@ ENV NEXTAUTH_URL='http://localhost:3000'
 ENV PIPELINE_URL='https://pipeline.ndp.civicdatalab.in'
 
 #Sets the working directory for any RUN, CMD, ENTRYPOINT, COPY, and ADD commands
-WORKDIR /usr/src/app
+WORKDIR /code
 
 ##Copy new files or directories into the filesystem of the container
-COPY . /usr/src/app
+COPY . /code/
 
 #Execute commands in a new layer on top of the current image and commit the results
 RUN npm install --force

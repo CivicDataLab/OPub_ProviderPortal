@@ -24,7 +24,7 @@ services:
         - NEXTAUTH_URL='http://localhost:3000'
         - PIPELINE_URL='https://pipeline.ndp.civicdatalab.in'
        
-      command: bash -c "npm run build && npm start"
+      command: sh -c "npm run build && npm start"
       ports:
         - 3000:3000
       # stdin_open: true
