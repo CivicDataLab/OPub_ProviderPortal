@@ -13,7 +13,7 @@ import Head from 'next/head';
 import { platform_name } from 'platform-constants';
 import { GET_ALL_STATS_COUNT } from 'services';
 import {
-  featchPopularSearches,
+  // featchPopularSearches,
   fetchFeaturedDatasets,
   fetchPartnersDatasets,
   fetchUserCount,
@@ -23,7 +23,7 @@ const Home = ({
   users,
   statsCount,
   featuredDatasets,
-  popularSearches,
+  // popularSearches,
   partnersData,
   homeBannerImages,
 }) => {
@@ -37,7 +37,7 @@ const Home = ({
         <HomeHeader
           users={users}
           statsData={statsCount}
-          popularSearches={popularSearches}
+          // popularSearches={popularSearches}
         />
         <HomeExplore />
         <HomeAbout />
@@ -61,7 +61,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const { data } = await client.query({ query: GET_ALL_STATS_COUNT });
   const featuredDatasets = await fetchFeaturedDatasets();
   const usersCount = await fetchUserCount();
-  const popularSearches = await featchPopularSearches();
+  // const popularSearches = await featchPopularSearches();
   const partnersData = await fetchPartnersDatasets();
 
   const homeBanners = await fetch(`${process.env.STRAPI_URL}/banner-images`)
@@ -77,7 +77,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       users: usersCount.user_count,
       statsCount: data.stat_count,
       featuredDatasets: featuredDatasets || [],
-      popularSearches: popularSearches || [],
+      // popularSearches: popularSearches || [],
       partnersData: partnersData || [],
       homeBannerImages: homeBanners || [],
     },

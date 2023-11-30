@@ -9,43 +9,43 @@ import { useWindowSize } from 'utils/hooks';
 import { Particle } from './Particle';
 import useTranslation from 'next-translate/useTranslation';
 
-const HomeHeader = ({ users, statsData, popularSearches }) => {
+const HomeHeader = ({ users, statsData}) => {
   const [search, setSearch] = useState('');
-  const [popularSearchValue, setPopularSearchValue] = useState(false);
+  // const [popularSearchValue, setPopularSearchValue] = useState(false);
   const router = useRouter();
 
   const { t } = useTranslation('home');
 
-  useEffect(() => {
-    if (search !== '' && !popularSearchValue) {
-      router.push({
-        pathname: `/datasets`,
-        query: {
-          q: search,
-        },
-      });
-    }
-  }, [search]);
+  // useEffect(() => {
+  //   if (search !== '' && !popularSearchValue) {
+  //     router.push({
+  //       pathname: `/datasets`,
+  //       query: {
+  //         q: search,
+  //       },
+  //     });
+  //   }
+  // }, [search]);
 
-  useEffect(() => {
-    if (search !== '' && popularSearchValue) {
-      router.push({
-        pathname: `/datasets`,
-        query: {
-          q: search,
-        },
-      });
-    }
-  }, [popularSearchValue]);
+  // useEffect(() => {
+  //   if (search !== '' && popularSearchValue) {
+  //     router.push({
+  //       pathname: `/datasets`,
+  //       query: {
+  //         q: search,
+  //       },
+  //     });
+  //   }
+  // }, [popularSearchValue]);
 
   function handleDatasetsChange(val) {
     setSearch(val);
   }
 
-  function handlePopularSearch(value) {
-    setSearch(value);
-    setPopularSearchValue(true);
-  }
+  // function handlePopularSearch(value) {
+  //   setSearch(value);
+  //   setPopularSearchValue(true);
+  // }
 
   const list = [
     {
@@ -114,7 +114,7 @@ const HomeHeader = ({ users, statsData, popularSearches }) => {
               btnLabel="Search"
             />
 
-            {popularSearches.length > 0 && (
+            {/* {popularSearches.length > 0 && (
               <PopularSearchTags>
                 <Text variant="pt14" color={'var(--text-medium)'}>
                   {t('popular-searches')}
@@ -130,7 +130,7 @@ const HomeHeader = ({ users, statsData, popularSearches }) => {
                   ))}
                 </div>
               </PopularSearchTags>
-            )}
+            )} */}
           </Container>
         </Header>
         <Assets>
@@ -251,35 +251,35 @@ const Container = styled.div`
   }
 `;
 
-const PopularSearchTags = styled.div`
-  margin-top: 24px;
+// const PopularSearchTags = styled.div`
+//   margin-top: 24px;
 
-  > div {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 10px;
-  }
+//   > div {
+//     display: flex;
+//     align-items: center;
+//     flex-wrap: wrap;
+//     gap: 8px;
+//     margin-top: 10px;
+//   }
 
-  button {
-    background-color: var(--color-white);
-    min-width: 97px;
-    min-height: 32px;
-    border-radius: 2px;
-    padding: 4px 12px;
-    border: 1px solid transparent;
-    line-height: 1;
+//   button {
+//     background-color: var(--color-white);
+//     min-width: 97px;
+//     min-height: 32px;
+//     border-radius: 2px;
+//     padding: 4px 12px;
+//     border: 1px solid transparent;
+//     line-height: 1;
 
-    &:hover {
-      border-color: var(--color-primary-01);
-    }
-  }
+//     &:hover {
+//       border-color: var(--color-primary-01);
+//     }
+//   }
 
-  @media (max-width: 640px) {
-    margin-top: 16px;
-  }
-`;
+//   @media (max-width: 640px) {
+//     margin-top: 16px;
+//   }
+// `;
 
 const Assets = styled.div`
   padding-top: 56px;
