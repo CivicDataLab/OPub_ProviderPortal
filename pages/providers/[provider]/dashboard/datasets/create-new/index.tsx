@@ -22,8 +22,8 @@ const CreateDatasetWrapper = ({ transformerslist, apitransformerslist }) => {
       {datasetFileID ? (
         <CreationFlow
           datasetFileID={datasetFileID}
-          transformerslist={transformerslist}
-          apitransformerslist={apitransformerslist}
+          transformerslist={''}
+          apitransformerslist={''}
         />
       ) : (
         <CreateDataset />
@@ -32,20 +32,20 @@ const CreateDatasetWrapper = ({ transformerslist, apitransformerslist }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  context.res.setHeader(
-    'Cache-Control',
-    'public, s-maxage=10, stale-while-revalidate=59'
-  );
+// export const getServerSideProps: GetServerSideProps = async (context) => {
+//   context.res.setHeader(
+//     'Cache-Control',
+//     'public, s-maxage=10, stale-while-revalidate=59'
+//   );
 
-  const transformerslist = await fetchTransformersList();
-  const apitransformerslist = await fetchApiTransformersList();
-  return {
-    props: {
-      transformerslist,
-      apitransformerslist,
-    },
-  };
-};
+//   const transformerslist = await fetchTransformersList();
+//   const apitransformerslist = await fetchApiTransformersList();
+//   return {
+//     props: {
+//       transformerslist,
+//       apitransformerslist,
+//     },
+//   };
+// };
 
 export default CreateDatasetWrapper;
